@@ -98,19 +98,25 @@ private:
 
   void read_core_tensor() {
 
-    // TODO: Decide if we have to read Base64 or not
+    if( this->modelFile["CoreTensor"].IsScalar() ) {
 
-    const YAML::Binary& binaryNode = this->modelFile["CoreTensor"].as<YAML::Binary>();
+      const YAML::Binary& binaryNode = this->modelFile["CoreTensor"].as<YAML::Binary>();
 
-    this->coreTensorData =
-      BinaryConverter::convert_to_double(
-        binaryNode.data(), binaryNode.size());
+      this->coreTensorData =
+        BinaryConverter::convert_to_double(
+          binaryNode.data(), binaryNode.size());
 
-    /*
-    for(const YAML::Node& value: this->modelFile["CoreTensor"]) {
-      coreTensor.push_back(value.as<double>());
     }
-    */
+    else if( this->modelFile["CoreTensor"].IsSequence() ) {
+
+      this->coreTensorData = this->modelFile["CoreTensor"].as< std::vector<double> >();
+
+    }
+    else {
+
+      throw std::runtime_error("Can not read core tensor data.");
+
+    }
 
     return;
 
