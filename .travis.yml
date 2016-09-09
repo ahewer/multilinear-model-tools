@@ -27,6 +27,7 @@ before_install:
     asio
     yaml-cpp
     insighttoolkit
+    vtk
     ; fi
 script:
   - pushd ema-tracker
