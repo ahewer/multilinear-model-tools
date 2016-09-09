@@ -9,6 +9,7 @@ before_install:
     libann-dev
     libjsoncpp-dev
     libasio-dev
+    libyaml-cpp-dev
 script:
   - pushd ema-tracker
   - cmake cmake
