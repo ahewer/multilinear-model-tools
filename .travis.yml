@@ -17,6 +17,7 @@ addons:
 before_install:
   - >
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    brew tap homebrew/science &&
     brew install
     armadillo
     ann
