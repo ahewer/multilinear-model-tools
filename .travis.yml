@@ -14,6 +14,17 @@ addons:
       - libasio-dev
       - libyaml-cpp-dev
       - libinsighttoolkit4-dev
+before_install:
+  - >
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    brew install
+    armadillo
+    ann
+    jsoncpp
+    asio
+    yaml-cpp
+    insighttoolkit
+    ; fi
 script:
   - pushd ema-tracker
   - cmake cmake
