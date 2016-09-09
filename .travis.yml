@@ -1,1 +1,6 @@
 language: cpp
+script:
+  - pushd ema-tracker
+  - cmake cmake
+  - make
+  - popd
