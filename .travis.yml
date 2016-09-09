@@ -10,6 +10,7 @@ before_install:
     libjsoncpp-dev
     libasio-dev
     libyaml-cpp-dev
+    libinsighttoolkit4-dev
 script:
   - pushd ema-tracker
   - cmake cmake
