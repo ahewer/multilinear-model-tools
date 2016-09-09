@@ -1,6 +1,12 @@
-sudo: required
-dist: trusty
 language: cpp
+os:
+  - linux
+  - osx
+matrix:
+  include:
+    - os: linux
+      sudo: required
+      dist: trusty
 addons:
   apt:
     packages:
