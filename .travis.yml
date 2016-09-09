@@ -4,6 +4,9 @@ before_install:
   - >
     sudo apt-get install -y
     libarmadillo-dev
+    libann-dev
+    libjsoncpp-dev
+    libasio-dev
 script:
   - pushd ema-tracker
   - cmake cmake
