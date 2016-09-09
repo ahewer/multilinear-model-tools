@@ -30,3 +30,11 @@ script:
   - cmake cmake
   - make
   - popd
+  - pushd fit-model
+  - cmake cmake
+  - make
+  - popd
+  - pushd model-builder
+  - cmake cmake
+  - make
+  - popd
