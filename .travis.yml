@@ -1,16 +1,15 @@
 sudo: required
 dist: trusty
 language: cpp
-before_install:
-  - sudo apt-get -qq update
-  - >
-    sudo apt-get install -y
-    libarmadillo-dev
-    libann-dev
-    libjsoncpp-dev
-    libasio-dev
-    libyaml-cpp-dev
-    libinsighttoolkit4-dev
+addons:
+  apt:
+    packages:
+      - libarmadillo-dev
+      - libann-dev
+      - libjsoncpp-dev
+      - libasio-dev
+      - libyaml-cpp-dev
+      - libinsighttoolkit4-dev
 script:
   - pushd ema-tracker
   - cmake cmake
