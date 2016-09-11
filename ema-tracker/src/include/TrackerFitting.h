@@ -80,14 +80,6 @@ public:
       throw std::runtime_error("Source indices not set!");
     }
 
-    // do not fit old frames
-    if(this->trackerData.oldTime > this->trackerData.currentTime &&
-       this->trackerState.firstFrame == false) {
-
-      return;
-
-    }
-
     this->fitting->fit(this->trackerData.target);
 
     // record speaker weights if speaker was not fixed
