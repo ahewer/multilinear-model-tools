@@ -1,0 +1,44 @@
+language: cpp
+matrix:
+  include:
+    - os: linux
+      sudo: required
+      dist: trusty
+    - os: osx
+addons:
+  apt:
+    packages:
+      - libarmadillo-dev
+      - libann-dev
+      - libjsoncpp-dev
+      - libasio-dev
+      - libyaml-cpp-dev
+      - libinsighttoolkit4-dev
+before_install:
+  - >
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    brew update &&
+    brew tap homebrew/science &&
+    brew unlink json-c &&
+    brew install
+    armadillo
+    ann
+    jsoncpp
+    asio
+    yaml-cpp
+    insighttoolkit
+    vtk
+    ; fi
+script:
+  - pushd ema-tracker
+  - cmake cmake
+  - make
+  - popd
+  - pushd fit-model
+  - cmake cmake
+  - make
+  - popd
+  - pushd model-builder
+  - cmake cmake
+  - make
+  - popd
