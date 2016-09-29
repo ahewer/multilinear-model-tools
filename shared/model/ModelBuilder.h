@@ -59,6 +59,15 @@ public:
   void set_tensor(const Tensor& tensor) {
 
     this->tensor = tensor;
+
+    // save original mode dimensions
+    this->originalSpeakerModeDimension =
+      this->tensor.data().get_mode_one_dimension();
+
+    this->originalPhonemeModeDimension =
+      this->tensor.data().get_mode_two_dimension();
+
+    // set truncated mode dimensions to original ones
     this->truncatedSpeakerModeDimension =
       this->tensor.data().get_mode_one_dimension();
 
@@ -129,11 +138,13 @@ public:
     arma::rowvec phonemeMeanWeights = analysis.get_mode_two_mean();
 
     ModelData modelData;
-    modelData.set_core_tensor(coreTensor)                   \
+    modelData.set_core_tensor(coreTensor)                     \
       .set_shape_space_origin(this->origin)                   \
       .set_shape_space_origin_mesh(this->originMesh)          \
       .set_speaker_mean_weights(speakerMeanWeights.t())       \
-      .set_phoneme_mean_weights(phonemeMeanWeights.t());
+      .set_phoneme_mean_weights(phonemeMeanWeights.t())       \
+      .set_original_speaker_mode_dimension(this->originalSpeakerModeDimension) \
+      .set_original_phoneme_mode_dimension(this->originalPhonemeModeDimension);
 
     return Model(modelData);
 
@@ -181,6 +192,9 @@ private:
   bool facesSet;
 
   /*--------------------------------------------------------------------------*/
+
+  int originalSpeakerModeDimension;
+  int originalPhonemeModeDimension;
 
   int truncatedSpeakerModeDimension;
   int truncatedPhonemeModeDimension;

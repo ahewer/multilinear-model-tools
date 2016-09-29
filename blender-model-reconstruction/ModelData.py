@@ -35,6 +35,8 @@ class ModelData:
         self.shapeSpaceOrigin  = None
         self.speakerMeanWeights = None
         self.phonemeMeanWeights = None
+        self.dimSpeakerOriginal = 0
+        self.dimPhonemeOriginal = 0
         self.dimSpeaker = 0
         self.dimPhoneme = 0
         self.dimVertex = 0

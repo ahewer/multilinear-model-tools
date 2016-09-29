@@ -70,7 +70,9 @@ public:
       .set_speaker_mean_weights(this->speakerMeanWeights) \
       .set_phoneme_mean_weights(this->phonemeMeanWeights) \
       .set_shape_space_origin(this->origin) \
-      .set_shape_space_origin_mesh(originShape);
+      .set_shape_space_origin_mesh(originShape) \
+      .set_original_speaker_mode_dimension(this->dimensionOriginalSpeakerMode) \
+      .set_original_phoneme_mode_dimension(this->dimensionOriginalPhonemeMode);
 
     return Model(modelData);
 
@@ -86,8 +88,14 @@ private:
 
     const YAML::Node& modeDims = this->modelFile["Dimensions"];
 
-    this->dimensionSpeakerMode = modeDims["SpeakerMode"].as<int>();
-    this->dimensionPhonemeMode = modeDims["PhonemeMode"].as<int>();
+    this->dimensionOriginalSpeakerMode =
+      modeDims["OriginalSpeakerMode"].as<int>();
+    this->dimensionOriginalPhonemeMode =
+      modeDims["OriginalPhonemeMode"].as<int>();
+
+    this->dimensionSpeakerMode = modeDims["TruncatedSpeakerMode"].as<int>();
+    this->dimensionPhonemeMode = modeDims["TruncatedPhonemeMode"].as<int>();
+
     this->dimensionVertexMode = modeDims["VertexMode"].as<int>();
 
     return;
@@ -214,6 +222,8 @@ private:
   /*--------------------------------------------------------------------------*/
 
   // dimensions
+  int dimensionOriginalSpeakerMode;
+  int dimensionOriginalPhonemeMode;
   int dimensionSpeakerMode;
   int dimensionPhonemeMode;
   int dimensionVertexMode;

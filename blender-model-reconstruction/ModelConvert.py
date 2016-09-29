@@ -36,8 +36,8 @@ class ModelConvert:
     def __init__(self, modelData):
 
         self.modelData = modelData
-        self.scaleFactorSpeaker = sqrt(modelData.dimSpeaker)
-        self.scaleFactorPhoneme = sqrt(modelData.dimPhoneme)
+        self.scaleFactorSpeaker = sqrt(modelData.dimSpeakerOriginal)
+        self.scaleFactorPhoneme = sqrt(modelData.dimPhonemeOriginal)
 
     def to_weights(self, weights):
 

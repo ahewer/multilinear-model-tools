@@ -43,8 +43,11 @@ class ModelBuilder:
             rawModel = json.load(inputFile)
 
         self.modelData.dimVertex = rawModel['Dimensions']['VertexMode']
-        self.modelData.dimSpeaker = rawModel['Dimensions']['SpeakerMode']
-        self.modelData.dimPhoneme = rawModel['Dimensions']['PhonemeMode']
+        self.modelData.dimSpeaker = rawModel['Dimensions']['TruncatedSpeakerMode']
+        self.modelData.dimPhoneme = rawModel['Dimensions']['TruncatedPhonemeMode']
+
+        self.modelData.dimSpeakerOriginal = rawModel['Dimensions']['OriginalSpeakerMode']
+        self.modelData.dimPhonemeOriginal = rawModel['Dimensions']['OriginalPhonemeMode']
 
         self.modelData.coreTensor = numpy.array(rawModel['CoreTensor'])
         self.modelData.shapeSpaceOrigin = numpy.array(rawModel['ShapeSpace']['Origin'])

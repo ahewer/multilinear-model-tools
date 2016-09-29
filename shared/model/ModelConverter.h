@@ -40,8 +40,14 @@ public:
 
   ModelConverter(const ModelData& modelData): modelData(modelData) {
 
-    this->scaleFactorSpeaker = sqrt(modelData.get_speaker_mode_dimension());
-    this->scaleFactorPhoneme = sqrt(modelData.get_phoneme_mode_dimension());
+    this->scaleFactorSpeaker = sqrt(
+      modelData.get_original_speaker_mode_dimension()
+      );
+
+    this->scaleFactorPhoneme = sqrt(
+      modelData.get_original_phoneme_mode_dimension()
+      );
+
   }
 
   /*--------------------------------------------------------------------------*/
