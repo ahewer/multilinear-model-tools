@@ -82,13 +82,25 @@ private:
     const int dimensionVertexMode =
       this->model.data().get_vertex_mode_dimension();
 
+    const int dimensionOriginalSpeakerMode =
+      this->model.data().get_original_speaker_mode_dimension();
+
+    const int dimensionOriginalPhonemeMode =
+      this->model.data().get_original_phoneme_mode_dimension();
+
     this->mightyEmitter << YAML::Key << "Dimensions"
                         << YAML::Value << YAML::BeginMap
 
-                        << YAML::Key << "SpeakerMode"
+                        << YAML::Key << "OriginalSpeakerMode"
+                        << YAML::Value << dimensionOriginalSpeakerMode
+
+                        << YAML::Key << "OriginalPhonemeMode"
+                        << YAML::Value << dimensionOriginalPhonemeMode
+
+                        << YAML::Key << "TruncatedSpeakerMode"
                         << YAML::Value << dimensionSpeakerMode
 
-                        << YAML::Key << "PhonemeMode"
+                        << YAML::Key << "TruncatedPhonemeMode"
                         << YAML::Value << dimensionPhonemeMode
 
                         << YAML::Key << "VertexMode"

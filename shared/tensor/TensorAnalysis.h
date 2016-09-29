@@ -34,7 +34,7 @@ public:
 
   /*--------------------------------------------------------------------------*/
 
-  TensorAnalysis(const Tensor& tensor) : coreTensor(tensor) {
+  TensorAnalysis(const Tensor& tensor) : originalTensor(tensor) {
 
     this->truncatedModeOneDimension =
       this->coreTensor.data().get_mode_one_dimension();
@@ -116,8 +116,8 @@ private:
   void compute_svds() {
 
     // unfold the modes
-    arma::mat modeOne = this->coreTensor.modes().get_mode_one_matrix();
-    arma::mat modeTwo = this->coreTensor.modes().get_mode_two_matrix();
+    arma::mat modeOne = this->originalTensor.modes().get_mode_one_matrix();
+    arma::mat modeTwo = this->originalTensor.modes().get_mode_two_matrix();
 
     // temporary variable for SVD
     arma::mat V;
@@ -149,6 +149,7 @@ private:
   void compute_core_tensor() {
 
     // project tensor onto left singular values
+    this->coreTensor = this->originalTensor;
     this->coreTensor.operations().mode_one_multiply(modeOneU.t())       \
       .mode_two_multiply(modeTwoU.t());
 
@@ -156,6 +157,7 @@ private:
 
   /*--------------------------------------------------------------------------*/
 
+  Tensor originalTensor;
   Tensor coreTensor;
 
   // left singular vectors

@@ -93,6 +93,30 @@ public:
 
   /*--------------------------------------------------------------------------*/
 
+  ModelData& set_original_speaker_mode_dimension(
+    const int& speakerDimension
+    ) {
+
+    this->originalSpeakerModeDimension = speakerDimension;
+
+    return *this;
+
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  ModelData& set_original_phoneme_mode_dimension(
+    const int& phonemeDimension
+    ) {
+
+    this->originalPhonemeModeDimension = phonemeDimension;
+
+    return *this;
+
+  }
+
+  /*--------------------------------------------------------------------------*/
+
   /*--------------------------------------------------------------------------*/
   /* member getters */
   /*--------------------------------------------------------------------------*/
@@ -147,6 +171,18 @@ public:
 
   /*--------------------------------------------------------------------------*/
 
+  int get_original_speaker_mode_dimension() const {
+    return this->originalSpeakerModeDimension;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  int get_original_phoneme_mode_dimension() const {
+    return this->originalPhonemeModeDimension;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
 
 private:
 
@@ -159,6 +195,10 @@ private:
   arma::vec phonemeMeanWeights;
 
   Mesh shapeSpaceOriginMesh;
+
+  // original sizes of the modes before truncation was applied
+  int originalSpeakerModeDimension;
+  int originalPhonemeModeDimension;
 
   /*--------------------------------------------------------------------------*/
 
