@@ -53,4 +53,5 @@ class ModelBuilder:
         self.modelData.shapeSpaceOrigin = numpy.array(rawModel['ShapeSpace']['Origin'])
         self.modelData.speakerMeanWeights = numpy.array(rawModel['MeanWeights']['SpeakerMode'])
         self.modelData.phonemeMeanWeights = numpy.array(rawModel['MeanWeights']['PhonemeMode'])
+        self.modelData.faces = rawModel['ShapeSpace']['Faces']
         return self.modelData

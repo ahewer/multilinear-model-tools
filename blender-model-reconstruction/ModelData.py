@@ -40,3 +40,4 @@ class ModelData:
         self.dimSpeaker = 0
         self.dimPhoneme = 0
         self.dimVertex = 0
+        self.faces = None
